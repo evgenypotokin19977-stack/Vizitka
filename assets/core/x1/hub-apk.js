@@ -13,12 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const submit = modal.querySelector(".hub-apk-submit");
 
-  // открыть
   openBtn.addEventListener("click", () => {
     modal.classList.add("is-open");
   });
 
-  // закрыть
   const closeModal = () => {
     modal.classList.remove("is-open");
   };
@@ -26,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.addEventListener("click", closeModal);
   closeBtn.addEventListener("click", closeModal);
 
-  // отправка
   submit.addEventListener("click", async () => {
     const nameVal = name.value.trim();
     const contactVal = contact.value.trim();
@@ -54,37 +51,39 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const data = {
+      name: nameVal,
+      contact: contactVal,
+      apk: titleVal,
+      purpose: purposeVal,
+      comment: commentVal,
+      source: "JeX1k HUB",
+    };
+
     submit.textContent = "Отправка...";
     submit.disabled = true;
 
     try {
-      const response = await fetch("https://jex1k-hub.netlify.app/.netlify/functions/telegram", {
+      const response = await fetch("/.netlify/functions/telegram", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: nameVal,
-          contact: contactVal,
-          apk: titleVal,
-          purpose: purposeVal,
-          comment: commentVal,
-          source: "JeX1k HUB",
-        }),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-  const errorData = await response.json().catch(() => null);
+        const errorData = await response.json().catch(() => null);
 
-  alert(
-    errorData?.details ||
-    errorData?.error ||
-    errorData?.message ||
-    `Ошибка сервера: ${response.status}`
-  );
+        alert(
+          errorData?.details ||
+          errorData?.error ||
+          errorData?.message ||
+          `Ошибка сервера: ${response.status}`
+        );
 
-  throw new Error("Ошибка сервера");
-}
+        throw new Error("Ошибка сервера");
+      }
 
       submit.textContent = "Отправлено ✅";
 
@@ -100,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         purpose.value = "";
         comment.value = "";
       }, 1200);
-
     } catch (error) {
       console.error(error);
 
