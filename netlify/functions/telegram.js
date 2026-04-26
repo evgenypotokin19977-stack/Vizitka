@@ -24,7 +24,17 @@ exports.handler = async (event) => {
     }
 
     // Данные с формы
-    const data = JSON.parse(event.body);
+    let data = {};
+
+try {
+  data = JSON.parse(event.body);
+} catch (e) {
+  console.error("JSON parse error:", event.body);
+  return {
+    statusCode: 400,
+    body: JSON.stringify({ message: "Invalid JSON" }),
+  };
+}
 
     const email = data.email || "Не указано";
     const apk = data.apk || "Не указано";
