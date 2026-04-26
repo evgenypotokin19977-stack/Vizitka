@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>JeX1k HUB</title>
+   
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="temp.css" />
+  <link rel="stylesheet" href="hub-apk.css" />
+</head>
+
+<body>
+
+<!-- 🔐 защита -->
+<script>
+if (localStorage.getItem('express_access') !== 'granted') {
+  window.location.href = '/';
+}
+</script>
+
+<header class="hub-header">
+  <div class="hub-logo">JeX1k.HUB</div>
+</header>
+
+<main class="hub-main">
+  <section class="hub-panel">
+    <div class="access-badge">ACCESS GRANTED</div>
+
+    <h1 class="hub-title">
+      УЧИТЬ ТЕСТЫ
+
+      БОЛЬШЕ НЕ БОЛЬНО
+    </h1>
+
+    <p class="hub-subtitle">
+      ☻ Помни дружище, лучший ответ — это только ответ в твоей же голове ☻
+    </p>
+
+    <h2 class="hub-categories-title">
+      Ответики на наши любимые категории
+    </h2>
+
+    <div class="hub-buttons">
+      <button class="hub-category-btn cat-3" data-modal="category-3">
+        3-я Категория
+      </button>
+
+      <button class="hub-category-btn cat-2" data-modal="category-2">
+        2-я Категория
+      </button>
+
+      <button class="hub-category-btn cat-1" data-modal="category-1">
+        1-я Категория
+      </button>
+    </div>
+  </section>
+
+  <section class="hub-apk">
+  <div class="hub-apk-card">
+
+    <div class="hub-apk-title">
+      APK / MODULE
+    </div>
+
+    <div class="hub-apk-text">
+      Закрытые материалы, не для лишних глаз.
+    </div>
+
+    <button class="hub-apk-btn">
+      Открыть доступ
+    </button>
+
+  </div>
+</section>
+
+  <!-- MODALS -->
+  <div class="hub-modal" id="category-3">
+  <div class="hub-modal__overlay" data-close></div>
+
+  <div class="hub-modal__content hub-modal__content--search">
+    <button class="hub-modal__close" data-close>×</button>
+
+    <h3 class="search-modal-title">(: Не тупим :)</h3>
+    <p class="search-modal-subtitle">
+      Введи часть вопроса — и сразу получишь ответ
+    </p>
+
+    <input
+      class="answer-search"
+      id="category3Search"
+      type="text"
+      placeholder="Например: NOTOC, буксировка, топливо..."
+      autocomplete="off"
+    />
+
+    <div class="answer-result" id="category3Result">
+      Начни вводить текст для поиска вопроса.
+    </div>
+  </div>
+</div>
+
+  <div class="hub-modal" id="category-2">
+    <div class="hub-modal__overlay" data-close></div>
+    <div class="hub-modal__content">
+      <button class="hub-modal__close" data-close>×</button>
+      <h3>2-я Категория</h3>
+      <p>Здесь будет содержимое для 2-й категории.</p>
+    </div>
+  </div>
+
+  <div class="hub-modal" id="category-1">
+    <div class="hub-modal__overlay" data-close></div>
+    <div class="hub-modal__content">
+      <button class="hub-modal__close" data-close>×</button>
+      <h3>1-я Категория</h3>
+      <p>Здесь будет содержимое для 1-й категории.</p>
+    </div>
+  </div>
+
+  <div class="hub-modal" id="apk-modal">
+  <div class="hub-modal__overlay" data-close></div>
+
+  <div class="hub-modal__content hub-apk-modal">
+    <button class="hub-modal__close" data-close>×</button>
+
+    <h3 class="hub-apk-modal__title">APK / REQUEST</h3>
+
+    <div class="hub-apk-field">
+      <span>Как тебя звать?</span>
+      <input type="text" id="apk-name" placeholder="Имя или ник">
+    </div>
+
+    <div class="hub-apk-field">
+      <span>Куда ответить?</span>
+      <input type="text" id="apk-contact" placeholder="Telegram или email">
+    </div>
+
+    <div class="hub-apk-field">
+      <span>Какой APK / файл интересует?</span>
+      <input type="text" id="apk-title" placeholder="Например: APK, PDF, памятка...">
+    </div>
+
+    <div class="hub-apk-field">
+      <span>Зачем тебе этот файл?</span>
+      <textarea id="apk-purpose" placeholder="Коротко опиши цель запроса"></textarea>
+    </div>
+
+    <div class="hub-apk-field">
+      <span>Комментарий</span>
+      <textarea id="apk-comment" placeholder="Можно оставить доп. информацию"></textarea>
+    </div>
+
+    <button class="hub-apk-submit">
+      Отправить заявку
+    </button>
+  </div>
+</div>
+</main>
+
+<footer class="hub-footer">
+  @JeX1k — секретная страничка, для своих ребят
+</footer>
+
+<script src="otvetJS/1kat.js"></script>
+<script src="otvetJS/2kat.js"></script>
+<script src="otvetJS/3kat.js"></script>
+<script src="hub-apk.js"></script>
+<script src="temp.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+.hub-apk {
+  width: min(1100px, calc(100% - 32px));
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* карточка */
+.hub-apk-card {
+  width: 260px;
+  height: 260px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 156, 0.25);
+  border-radius: 18px;
+  background: rgba(0, 20, 12, 0.4);
+  box-shadow:
+    0 0 20px rgba(0, 255, 156, 0.08),
+    inset 0 0 20px rgba(0, 255, 156, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* заголовок */
+.hub-apk-title {
+  text-align: center;
+  color: #00ff9c;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px rgba(0,255,156,0.7);
+}
+
+/* текст */
+.hub-apk-text {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(220,255,240,0.85);
+  line-height: 1.5;
+}
+
+/* кнопка */
+.hub-apk-btn {
+  padding: 10px;
+  border: 1px solid rgba(0,255,156,0.5);
+  border-radius: 10px;
+  background: transparent;
+  color: #00ff9c;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.hub-apk-btn:hover {
+  background: rgba(0,255,156,0.08);
+  box-shadow: 0 0 15px rgba(0,255,156,0.3);
+}
+
+.hub-apk-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    transparent,
+    rgba(0,255,156,0.03),
+    transparent
+  );
+  pointer-events: none;
+}
+
+
+/* ===== APK MODAL ===== */
+
+.hub-apk-modal {
+  width: min(600px, calc(100% - 32px));
+}
+
+/* заголовок */
+.hub-apk-modal__title {
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  color: #00ff9c;
+
+  text-shadow: 0 0 12px rgba(0,255,156,0.7);
+}
+
+/* поле */
+.hub-apk-field {
+  margin-top: 18px;
+}
+
+.hub-apk-field span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(220,255,240,0.9);
+  font-weight: 700;
+}
+
+/* input + textarea */
+.hub-apk-field input,
+.hub-apk-field textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,255,156,0.4);
+
+  background: rgba(0,20,12,0.6);
+  color: #dffff2;
+
+  font-family: inherit;
+  outline: none;
+
+  transition: 0.25s;
+}
+
+.hub-apk-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.hub-apk-field input:focus,
+.hub-apk-field textarea:focus {
+  box-shadow: 0 0 18px rgba(0,255,156,0.3);
+}
+
+/* кнопка */
+.hub-apk-submit {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+
+  border: 1px solid rgba(0,255,156,0.6);
+  border-radius: 12px;
+
+  background: transparent;
+  color: #00ff9c;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.hub-apk-submit:hover {
+  background: rgba(0,255,156,0.08);
+  box-shadow: 0 0 20px rgba(0,255,156,0.35);
+}
+
+/* ===== RESPONSIVE / HUB APK ===== */
+
+@media (max-width: 900px) {
+  .hub-apk {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hub-apk-card {
+    width: 280px;
+    height: auto;
+    min-height: 230px;
+    padding: 20px;
+  }
+
+  .hub-apk-title {
+    font-size: 13px;
+  }
+
+  .hub-apk-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hub-apk {
+    width: 100%;
+  }
+
+  .hub-apk-card {
+    width: 100%;
+    min-height: 220px;
+    border-radius: 16px;
+  }
+
+  .hub-apk-modal {
+    width: calc(100% - 28px);
+  }
+
+  .hub-apk-modal__title {
+    font-size: 26px;
+    letter-spacing: 2px;
+  }
+
+  .hub-apk-field span {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .hub-apk-field input,
+  .hub-apk-field textarea {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .hub-apk-field textarea {
+    min-height: 130px;
+  }
+
+  .hub-apk-submit {
+    padding: 14px;
+  }
+
+   .hub-apk-modal {
+    width: calc(100% - 40px);
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 5vh auto;
+    padding: 26px 16px;
+  }
+
+  .hub-apk-field input,
+  .hub-apk-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hub-apk-modal__title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+}
