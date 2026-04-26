@@ -1,6 +1,5 @@
 exports.handler = async (event) => {
   try {
-    // Только POST
     if (event.httpMethod !== "POST") {
       return {
         statusCode: 405,
@@ -8,52 +7,53 @@ exports.handler = async (event) => {
       };
     }
 
-    // Переменные из Netlify
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
     const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
     if (!BOT_TOKEN || !CHAT_ID) {
-      console.error("Missing env variables:", { BOT_TOKEN, CHAT_ID });
-
+      console.error("Missing env variables");
       return {
         statusCode: 500,
-        body: JSON.stringify({
-          message: "Env variables missing",
-        }),
+        body: JSON.stringify({ message: "Env variables missing" }),
       };
     }
 
-    // Данные с формы
     let data = {};
 
-try {
-  data = JSON.parse(event.body);
-} catch (e) {
-  console.error("JSON parse error:", event.body);
-  return {
-    statusCode: 400,
-    body: JSON.stringify({ message: "Invalid JSON" }),
-  };
-}
+    try {
+      data = JSON.parse(event.body || "{}");
+    } catch (error) {
+      console.error("JSON parse error:", event.body);
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Invalid JSON" }),
+      };
+    }
 
-    const email = data.email || "Не указано";
+    const name = data.name || "Не указано";
+    const contact = data.contact || "Не указано";
     const apk = data.apk || "Не указано";
-    const reason = data.reason || "Не указано";
+    const purpose = data.purpose || "Не указано";
     const comment = data.comment || "Нет";
+    const source = data.source || "JeX1k HUB";
 
-    // Сообщение в Telegram
     const text = `
-🔥 Новая заявка с сайта
+🔥 Новая APK-заявка
 
-📧 Email: ${email}
-📦 APK: ${apk}
-❓ Зачем: ${reason}
-💬 Комментарий: ${comment}
-    `;
+📍 Источник: ${source}
+👤 Имя / ник: ${name}
+📩 Контакт: ${contact}
+📦 APK / файл: ${apk}
 
-    console.log("Sending to Telegram:", text);
+🎯 Зачем нужен:
+${purpose}
 
-    // Отправка в Telegram
+💬 Комментарий:
+${comment}
+`;
+
+    console.log("Sending to Telegram");
+
     const response = await fetch(
       `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
       {
@@ -63,12 +63,11 @@ try {
         },
         body: JSON.stringify({
           chat_id: CHAT_ID,
-          text: text,
+          text,
         }),
       }
     );
 
-    // Если ошибка от Telegram
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Telegram API error:", errorText);
@@ -86,11 +85,8 @@ try {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        message: "Success",
-      }),
+      body: JSON.stringify({ message: "Success" }),
     };
-
   } catch (error) {
     console.error("Function crash:", error);
 
