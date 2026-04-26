@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submit.disabled = true;
 
     try {
-      const response = await fetch("/.netlify/functions/telegram", {
+      const response = await fetch("https://jex1k-hub.netlify.app/.netlify/functions/telegram", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,8 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!response.ok) {
-        throw new Error("Ошибка сервера");
-      }
+  const errorData = await response.json().catch(() => null);
+
+  alert(
+    errorData?.details ||
+    errorData?.error ||
+    errorData?.message ||
+    `Ошибка сервера: ${response.status}`
+  );
+
+  throw new Error("Ошибка сервера");
+}
 
       submit.textContent = "Отправлено ✅";
 
